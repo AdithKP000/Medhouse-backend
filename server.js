@@ -18,9 +18,22 @@ dotenv.config()
 connectDB();
 
 //middlewares
-app.use(cors())
 app.use(express.json())
 app.use(morgan(`dev`));
+
+
+const allowedOrigins = ['http://localhost:3000', 'https://yourfrontenddomain.com'];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true
+}));
 
 //routes
 app.use("/api/v1/auth",authRoutes);
