@@ -22,7 +22,7 @@ app.use(express.json())
 app.use(morgan(`dev`));
 
 
-const allowedOrigins = ['http://localhost:3000', 'https://medhouse.onrender.com/'];
+const allowedOrigins = ['http://localhost:3000', 'https://medhouse.onrender.com'];
 
 app.use(cors({
   origin: function (origin, callback) {
